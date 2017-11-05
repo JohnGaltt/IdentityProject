@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table id="student-list" class="display">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>UserLastName</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>StudyDateString</th>
+                <th>RegisteredDateString</th>
+            </tr>
+        </thead>
+</table>
+<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            $("#student-list").DataTable({
+                "ajax": {
+                    "url": "/Home/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "UserName" },
+                    { "data": "UserLastName" },
+                    { "data": "Age" },
+                    { "data": "Email" },
+                    { "data": "StudyDateString" },
+                    { "data": "RegisteredDateString"}
+                ]
+            });
+        });
+    </script>
+    
+    } 
