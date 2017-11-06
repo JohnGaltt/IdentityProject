@@ -2,7 +2,9 @@
 Проект з використанням asp.net identity. У role base основі.
 Hangfire, autofac, angularjs, tabledata, ajax.
 
-логін для адміна - alex@mail.ru
+https://19102017evening20171106021626.azurewebsites.net/
+
+логін для адміна - Admin@gmail.com
 пароль - Fi11235813!
 Є дві особи адмін, та студент.
 
