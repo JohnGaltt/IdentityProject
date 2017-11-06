@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\ValuableProject\19.10.2017evening\19.10.2017evening\obj\Release\Package\PackageTmp" />
+  <setAcl path="D:\ValuableProject\19.10.2017evening\19.10.2017evening\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\ValuableProject\19.10.2017evening\19.10.2017evening\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

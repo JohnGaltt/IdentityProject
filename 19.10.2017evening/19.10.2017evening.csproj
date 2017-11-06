@@ -61,6 +61,9 @@
     <Reference Include="Hangfire.Core, Version=1.6.17.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hangfire.Core.1.6.17\lib\net45\Hangfire.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Hangfire.Dashboard.Authorization, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Dashboard.Authorization.2.1.0\lib\net45\Hangfire.Dashboard.Authorization.dll</HintPath>
+    </Reference>
     <Reference Include="Hangfire.SqlServer, Version=1.6.17.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hangfire.SqlServer.1.6.17\lib\net45\Hangfire.SqlServer.dll</HintPath>
     </Reference>
@@ -223,59 +226,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710200405490_YearMigations.cs" />
-    <Compile Include="Migrations\201710200405490_YearMigations.Designer.cs">
-      <DependentUpon>201710200405490_YearMigations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710200408367_StudyYearMigration.cs" />
-    <Compile Include="Migrations\201710200408367_StudyYearMigration.Designer.cs">
-      <DependentUpon>201710200408367_StudyYearMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710200413047_StudyYearMigration1.cs" />
-    <Compile Include="Migrations\201710200413047_StudyYearMigration1.Designer.cs">
-      <DependentUpon>201710200413047_StudyYearMigration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710200443462_StudyYearMigration3.cs" />
-    <Compile Include="Migrations\201710200443462_StudyYearMigration3.Designer.cs">
-      <DependentUpon>201710200443462_StudyYearMigration3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710200500486_Adding student Model Migration.cs" />
-    <Compile Include="Migrations\201710200500486_Adding student Model Migration.Designer.cs">
-      <DependentUpon>201710200500486_Adding student Model Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710200504146_Adding student Model Migration fixed.cs" />
-    <Compile Include="Migrations\201710200504146_Adding student Model Migration fixed.Designer.cs">
-      <DependentUpon>201710200504146_Adding student Model Migration fixed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710201013357_Fix Study Date.cs" />
-    <Compile Include="Migrations\201710201013357_Fix Study Date.Designer.cs">
-      <DependentUpon>201710201013357_Fix Study Date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710201018076_Adding StudyDate DateTime.cs" />
-    <Compile Include="Migrations\201710201018076_Adding StudyDate DateTime.Designer.cs">
-      <DependentUpon>201710201018076_Adding StudyDate DateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710201355012_Sho.cs" />
-    <Compile Include="Migrations\201710201355012_Sho.Designer.cs">
-      <DependentUpon>201710201355012_Sho.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710231300314_bind for studydate.cs" />
-    <Compile Include="Migrations\201710231300314_bind for studydate.Designer.cs">
-      <DependentUpon>201710231300314_bind for studydate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710280519567_fix login bug.cs" />
-    <Compile Include="Migrations\201710280519567_fix login bug.Designer.cs">
-      <DependentUpon>201710280519567_fix login bug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711051343144_Registered date added%282%29.cs" />
-    <Compile Include="Migrations\201711051343144_Registered date added%282%29.Designer.cs">
-      <DependentUpon>201711051343144_Registered date added%282%29.cs</DependentUpon>
+    <Compile Include="Migrations\201711060947265_Start from now.cs" />
+    <Compile Include="Migrations\201711060947265_Start from now.Designer.cs">
+      <DependentUpon>201711060947265_Start from now.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="MyAuthorisationFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -476,6 +436,9 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Properties\PublishProfiles\19102017evening20171105070912 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\19102017evening20171105092202 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\19102017evening20171106021626 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\Factories\RegisterFactory.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
@@ -1239,7 +1202,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1292,41 +1257,8 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710200405490_YearMigations.resx">
-      <DependentUpon>201710200405490_YearMigations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710200408367_StudyYearMigration.resx">
-      <DependentUpon>201710200408367_StudyYearMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710200413047_StudyYearMigration1.resx">
-      <DependentUpon>201710200413047_StudyYearMigration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710200443462_StudyYearMigration3.resx">
-      <DependentUpon>201710200443462_StudyYearMigration3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710200500486_Adding student Model Migration.resx">
-      <DependentUpon>201710200500486_Adding student Model Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710200504146_Adding student Model Migration fixed.resx">
-      <DependentUpon>201710200504146_Adding student Model Migration fixed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710201013357_Fix Study Date.resx">
-      <DependentUpon>201710201013357_Fix Study Date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710201018076_Adding StudyDate DateTime.resx">
-      <DependentUpon>201710201018076_Adding StudyDate DateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710201355012_Sho.resx">
-      <DependentUpon>201710201355012_Sho.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710231300314_bind for studydate.resx">
-      <DependentUpon>201710231300314_bind for studydate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710280519567_fix login bug.resx">
-      <DependentUpon>201710280519567_fix login bug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711051343144_Registered date added%282%29.resx">
-      <DependentUpon>201711051343144_Registered date added%282%29.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711060947265_Start from now.resx">
+      <DependentUpon>201711060947265_Start from now.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

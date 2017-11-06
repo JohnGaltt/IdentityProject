@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using Hangfire;
+using Hangfire.Dashboard;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -36,8 +37,15 @@ namespace _19._10._2017evening
                ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("DefaultConnection");
 
-            app.UseHangfireDashboard();
+           // app.UseHangfireDashboard();
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new[] { new MyAuthorisationFilter() }
+            });
+
             app.UseHangfireServer();
+
+           // app.MapHangfireDashboard("/hangfire", new[] { HangFireAuthorizationFilter() })
         }
     }
 }

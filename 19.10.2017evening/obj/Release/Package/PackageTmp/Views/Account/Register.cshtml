@@ -1,0 +1,179 @@
+﻿
+
+
+@model _19._10._2017evening.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="RegisterController">
+<head>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+   <script src="https://code.angularjs.org/1.4.3/angular-messages.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Website CSS style -->
+    <link href="~/Content/CssRegister.css" rel="stylesheet" />
+    
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <title>Admin</title>
+    <style type="text/css">
+        .css-form input.ng-invalid.ng-touched {
+            background-color: #FA787E;
+        }
+
+        .css-form input.ng-valid.ng-touched {
+            background-color: #78FA89;
+        }
+        .regc{
+            color: white;
+        }
+    </style>
+    </head>
+
+<body class="registercs">
+
+    <div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h2 class="lead regc">Register</h2>
+                    <hr />
+                </div>
+            </div>
+            <div class="main-login main-center">
+                @*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))*@
+                <form name="registerForm" class="css-form" ng-submit="register(registerForm.$valid)" novalidate>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                @*@Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Enter your Name" })*@
+                                <input name="name" class="form-control" type="text" ng-pattern="'^[a-zA-Z]*$'" ng-model="registerForm.userName" placeholder="Enter your Name" required />
+                            </div>
+                                <div ng-messages="registerForm.name.$dirty && registerForm.name.$error">
+                                    <div class="text-danger" ng-message='pattern'>Only letters are allowed</div>
+                                    <div class="text-danger" ng-message='required'>This field is required</div>                             
+                                </div>   
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter your Email" })*@
+                                <input name="email" class="form-control" type="email" ng-model="registerForm.emailAddress"  placeholder="Enter your Email" ng-minlength="3" required />
+                            </div>
+                            <div ng-messages="registerForm.email.$dirty && registerForm.email.$error">
+                               
+                                <div class="text-danger" ng-message='required'>This field is required</div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                @*@Html.TextBoxFor(m => m.UserLastName, new { @class = "form-control", @placeholder = "Enter your Last Name" })*@
+                                <input name="lastname" class="form-control" ng-pattern="'^[a-zA-Z]*$'" type="text" ng-model="registerForm.userLastName" placeholder="Enter your Last Name" required />
+                            </div>
+                            <div ng-messages="registerForm.lastname.$dirty && registerForm.lastname.$error">
+                                <div class="text-danger" ng-message='pattern'>Only letters are allowed</div>
+                                <div class="text-danger" ng-message='required'>This field is required</div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter your Password" })*@
+                                <input name="pass" required  type="password" ng-pattern="'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!$%^&*-]).{6,}$'" ng-model="registerForm.password" class="form-control" placeholder="Enter your Password"  />
+                            </div>
+                            <div ng-messages="registerForm.pass.$dirty && registerForm.pass.$error">
+                                <div class="text-danger" ng-message='pattern'>Min 6 characters, 1 digit, 1 special, 1 uppercase, 1 lowercase</div>
+                                <div class="text-danger" ng-message='required'>This field is required</div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input name="confirmpassword" required type="password" ng-pattern="{{registerForm.password}}" ng-model="registerForm.confirmPassword" placeholder="Confirm your password" class="form-control">
+                            </div>
+                          </div>
+                        <div ng-messages="registerForm.confirmpassword.$dirty && registerForm.confirmpassword.$error">
+                            <div class="text-danger" ng-message='pattern'>Password confirmation must match</div>
+                            <div class="text-danger" ng-message='required'>This field is required</div>
+                         </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-hourglass-3 fa-lg" aria-hidden="true"></i></span>
+                                <input name="Age" type="text" ng-pattern = "'\\d+'" ng-model="registerForm.age" class="form-control" placeholder="Enter your Age" required /></div>
+                        </div>
+                        <div ng-messages="registerForm.Age.$dirty && registerForm.Age.$error">
+                            <div class="text-danger" ng-message='pattern'>Only digits are allowed</div>
+                            <div class="text-danger" ng-message='required'>This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        
+                        <button type="submit" ng-disabled="registerForm.$invalid"  class="btn custom btn-primary btn-lg btn-block login-button" >Register</button>
+                    </div>
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    @Scripts.Render("~/bundles/MyTestApp");
+</body>
+</html>
+
+
+
+
+
+
+
+
+@*<body>
+    <br /><br /><br />
+    <input type="text" ng-model="test" />
+    {{test}}
+    <form ng-submit="register()">
+        <label for="emailAddress">Email Address:</label>
+        <input id="emailAddress" type="text" ng-model="registerForm.emailAddress" required />
+
+        <label for="password">Password:</label>
+        <input id="password" type="password" ng-model="registerForm.password" required />
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input id="confirmPassword" type="password" ng-model="registerForm.confirmPassword" required />
+
+        <button type="submit">Register</button>
+    </form>
+   
+</body>
+</html>*@

@@ -1,0 +1,109 @@
+﻿@model _19._10._2017evening.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<link href="~/Content/Cabinet.css" rel="stylesheet" />
+
+
+<br /><br />
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        @ViewBag.Name  
+                    </div>
+                    <div class="profile-usertitle-job">
+                        @ViewBag.Position
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Overview
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Account Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Tasks
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-flag"></i>
+                                Help
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <h2 class="h2 lead">Choose your study date</h2>
+                            @using (Html.BeginForm("Index", "Student", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                @Html.EditorFor(model => model.StudyDate);
+                                <button onclick="javascript: showhide('stdiv');" class="btn btn-success" type="submit" id="btn" value="submit">submit</button>
+                            }
+                            @if (ViewBag.Okay == true)
+                            {
+                                <p class="lead">Okay man, we will remind you about your study date!</p>
+                            }
+                            <p class=" text-success font-italic">@ViewBag.Message</p>
+                            <p class=" text-danger">@ViewBag.verify</p> 
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <img  src="http://www.rgbstock.com/cache1rB96R/users/f/fa/fangol/300/nj98V3W.jpg"/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+<script type="text/javascript">
+    function showhide(id) {
+        var e = document.getElementById(id);
+        e.style.display = 'none';
+    }
+
+</script>
